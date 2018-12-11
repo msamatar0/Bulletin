@@ -1,10 +1,11 @@
 <?php session_start();
   $uname = $_POST["uname"];
+  $_SESSION["uname"] = $uname;
   $pword = $_POST["pword"];
 
   $dbconnection = mysqli_connect("localhost","root","","bulletin");
-  $userQuery = "select `name` from `bbusers` where `NAME` = \"" . $uname . "\"\n";
-  $pwordQuery = "select `password` from `bbusers` where `PASSWORD` = \"" . $pword . "\"\n";
+  $userQuery = "select `name` from `bbusers` where `name` = \"" . $uname . "\"\n";
+  $pwordQuery = "select `password` from `bbusers` where `password` = \"" . $pword . "\"\n";
 
   $userResult = mysqli_query($dbconnection, $userQuery);
   $pwordResult = mysqli_query($dbconnection, $pwordQuery);
@@ -23,11 +24,9 @@
   }
 
   if($ucheck && $pwcheck){
-    echo "success<br>";
     header("Location: bulletin_main.php");
   }
   else{
-    echo "failed<br>";
     header("Location: bulletin.php");
   }
 

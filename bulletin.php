@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bulletin Board</title>
+    <title>Login</title>
   </head>
   <body>
     <?php

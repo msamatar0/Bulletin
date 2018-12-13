@@ -39,11 +39,17 @@
       <div class="jumbotron" style="text-align: center; max-width: 50rem;">
         <div class="card-header">
           <?php
-            $result = mysqli_query($dbconnection, "select postSubject from postings where postId = ". $_GET["id"] ."\n");
+            $result = mysqli_query($dbconnection, "select postSubject,postedBy".
+              " from postings where postId = ". $_GET["id"] ."\n");
             $subj = mysqli_fetch_assoc($result)["postSubject"];
+
+            $result = mysqli_query($dbconnection, "select postSubject,postedBy".
+              " from postings where postId = ". $_GET["id"] ."\n");
+            $author = mysqli_fetch_assoc($result)["postedBy"];
             $_SESSION["parentid"] = $_GET["id"];
             $_SESSION["parentsubj"] = $subj;
             echo "<h5 style=\"text-align: left;\">" . $subj . "</h5>";
+            echo "<h6 style=\"text-align: left;\">By " . $author . "</h6>"
           ?>
         </div>
         <div class="card-body">

@@ -41,13 +41,13 @@
           <?php
             $result = mysqli_query($dbconnection, "select postSubject,postedBy".
               " from postings where postId = ". $_GET["id"] ."\n");
-            $subj = mysqli_fetch_assoc($result)["postSubject"];
+            $row = mysqli_fetch_assoc($result);
+            $subj = $row["postSubject"];
+            $author = $row["postedBy"];
 
-            $result = mysqli_query($dbconnection, "select postSubject,postedBy".
-              " from postings where postId = ". $_GET["id"] ."\n");
-            $author = mysqli_fetch_assoc($result)["postedBy"];
             $_SESSION["parentid"] = $_GET["id"];
             $_SESSION["parentsubj"] = $subj;
+
             echo "<h5 style=\"text-align: left;\">" . $subj . "</h5>";
             echo "<h6 style=\"text-align: left;\">By " . $author . "</h6>"
           ?>

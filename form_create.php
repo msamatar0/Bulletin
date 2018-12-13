@@ -14,7 +14,9 @@
   }
   else{
     $_SESSION["nickname"] = $_POST["nname"];
+    $_SESSION["texttype"] = "success";
     $_SESSION["postconfirm"] = "";
+    $_SESSION["uname"] = $_POST["uname"];
     header("Location: bulletin_main.php");
   }
 

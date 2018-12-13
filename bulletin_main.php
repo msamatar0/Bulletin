@@ -41,7 +41,7 @@
 
         $i = 1;
         echo "<ul class=\"list-group\"></br>";
-        while ($row = mysqli_fetch_assoc($result)){
+        while($row = mysqli_fetch_assoc($result)){
           echo "<li class=\"list-group-item d-flex justify-content-between align-items-center\">"
             . "<a href=\"post_info.php?id=". $row["postId"] ."\">"
             . $row["postSubject"] . "</a> " . $row["postDate"] . "</li></br>";

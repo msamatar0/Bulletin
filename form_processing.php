@@ -24,6 +24,10 @@
   }
 
   if($ucheck && $pwcheck){
+    $query = "select nickname from bbusers where name = \"". $uname ."\"\n";
+    $result = mysqli_query($dbconnection, $query);
+    $_SESSION["nickname"] = mysqli_fetch_assoc($result)["nickname"];
+    $_SESSION["texttype"] = "success";
     header("Location: bulletin_main.php");
   }
   else{

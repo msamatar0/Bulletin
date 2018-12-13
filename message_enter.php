@@ -3,6 +3,7 @@
   $msg = $_POST["msgbox"];
   $max = 0;
   $dbconnection = mysqli_connect("localhost","root","","bulletin");
+  $_SESSION["postconfirm"] = "";
 
   if (mysqli_connect_errno()){
     die("Database connection failed: " . mysqli_connect_error());
@@ -16,15 +17,16 @@
   }
   $max = $max + 1;
 
-  $query = $query = "insert into postings(postDate,postedBy,postSubject,content,ancestorPath) values(".
-    "now(),\"" . $_SESSION["uname"] . "\",\"" . $subj . "\",\"" . $msg . "\"," . $max . ")\n";
+  $query = $query = "insert into postings values(".
+    $max . ",now(),\"" . $_SESSION["uname"] . "\",\"" . $subj . "\",\"" . $msg . "\"," . $max . ")\n";
   $result = mysqli_query($dbconnection, $query);
   if(!$result){
-    echo $_SESSION["uname"] . "<br>" . $subj . "<br>" . $msg . "<br>" . $max . "<br>";
-    die("Database query failed.");
+    $_SESSION["texttype"] = "danger";
+    $_SESSION["postconfirm"] = "Error: post exceeds char limit";
     header("Location: bulletin_main.php");
   }
   else{
+    $_SESSION["postconfirm"] = "Message Posted!";
     header("Location: bulletin_main.php");
   }
   #UPDATE postings set ancestorPath = (SELECT postId from postings where postId = 2) a where postId = 2

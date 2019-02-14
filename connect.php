@@ -13,13 +13,5 @@
   echo $result;
   echo "hi\nno\n";
 
-//  if($result){
-//      while($row = mysqli_fetch_assoc($result)){
-//          echo "email: " . $row["email"]. " - Name: " . $row["Name"]. " - nickname" . $row["nickname"]. "<br>";
-//      }
-//  }else{
-//      echo "0 results";
-//  }
-
   $dbconnection->close();
 ?>
